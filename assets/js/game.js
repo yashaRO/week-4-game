@@ -337,9 +337,9 @@ var fight = function() {
 		played++
 	}
 	if (played >= 9 && !rBonus) {
-		eChar.counter *= Math.round(played / 3)
-		eChar.health *= Math.round(played/4);
-		pChar.health *= 1.5
+		eChar.counter *= Math.round(played / 3) - 1
+		eChar.health *= Math.round(played / 4) - 1;
+		pChar.health *= 1.75
 		pChar.attack *= .8
 		$('#pHealth').html(pChar.health)
 		$('#eHealth').html(eChar.health)
@@ -365,9 +365,15 @@ var fight = function() {
 	else {return}
 }
 var next = function() {
+	if(!$('.smashicon').is(":visible")) {
+		alert('GG');
+		return;
+	}
 	$('#enemy').remove()
 	enemySelect = false;
 	rBonus = false;
+	
+	
 }
 var reset = function() {
 	charData = charDataset()

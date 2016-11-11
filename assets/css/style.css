@@ -36,9 +36,11 @@ body {
     margin:0 50px;
     display:inline-block;
 }
-#player {
-
-}
-#enemy {
-
+@media screen and (min-width: 1600px) {
+	.battle {
+		margin-top: 190px;
+	}
+	.pField {
+        margin-top: 320px;
+    }
 }
