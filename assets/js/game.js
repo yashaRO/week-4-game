@@ -334,10 +334,10 @@ var fight = function() {
 		played++
 	}
 	if (played >= 20 && !rBonus) {
-		eChar.counter *= played / 2
+		eChar.counter *= played * 1.5
 		eChar.health *= Math.round(played / 2);
-		pChar.health *= 1.75
-		pChar.attack *= .6
+		pChar.health *= 2.2
+		pChar.attack *= 1.2
 		$('#pHealth').html(pChar.health)
 		$('#eHealth').html(eChar.health)
 		rBonus = true
@@ -383,6 +383,10 @@ var next = function() {
 }
 var reset = function() {
 	charData = charDataset()
+	$('#butty').remove()
+	$('.battle br').remove()
+	$('#eHealth').remove()
+	$('#pHealth').remove()
 	$('#enemy').remove()
 	enemySelect = false
 	$('#player').remove()
