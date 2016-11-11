@@ -116,9 +116,9 @@ var charDataset = function() {
 			counter:10
 		},
 		littlemac:{
-			health:100,
-			attack:10,
-			counter:10
+			health:40,
+			attack:30,
+			counter:25
 		},
 		lucario:{
 			health:100,
@@ -127,17 +127,17 @@ var charDataset = function() {
 		},
 		lucas:{
 			health:140,
-			attack:10,
-			counter:10
+			attack:12,
+			counter:12
 		},
 		lucina:{
 			health:120,
 			attack:14,
-			counter:18
+			counter:16
 		},
 		luigi:{
 			health:70,
-			attack:12,
+			attack:17,
 			counter:18
 		},
 		mario:{
@@ -161,7 +161,7 @@ var charDataset = function() {
 			counter:10
 		},
 		mewtwo:{
-			health:150,
+			health:130,
 			attack:18,
 			counter:18
 		},
@@ -171,9 +171,9 @@ var charDataset = function() {
 			counter:20
 		},
 		pacman:{
-			health:100,
-			attack:10,
-			counter:10
+			health:140,
+			attack:13,
+			counter:16
 		},
 		palutena:{
 			health:110,
@@ -182,8 +182,8 @@ var charDataset = function() {
 		},
 		peach:{
 			health:130,
-			attack:10,
-			counter:10
+			attack:12,
+			counter:12
 		},
 		pikachu:{
 			health:170,
@@ -192,13 +192,13 @@ var charDataset = function() {
 		},
 		pikmin:{
 			health:110,
-			attack:10,
-			counter:10
+			attack:13,
+			counter:11
 		},
 		pit:{
 			health:100,
 			attack:15,
-			counter:10
+			counter:25
 		},
 		robin:{
 			health:100,
@@ -207,18 +207,18 @@ var charDataset = function() {
 		},
 		robot:{
 			health:190,
-			attack:10,
-			counter:10
+			attack:12,
+			counter:14
 		},
 		rosetta:{
-			health:100,
-			attack:10,
-			counter:10
+			health:300,
+			attack:5,
+			counter:5
 		},
 		roy:{
 			health:190,
-			attack:10,
-			counter:10
+			attack:19,
+			counter:12
 		},
 		ryu:{
 			health:150,
@@ -231,7 +231,7 @@ var charDataset = function() {
 			counter:15
 		},
 		sheik:{
-			health:50,
+			health:60,
 			attack:25,
 			counter:30
 		},
@@ -241,12 +241,12 @@ var charDataset = function() {
 			counter:17
 		},
 		sonic:{
-			health:100,
-			attack:14,
-			counter:13
+			health:110,
+			attack:17,
+			counter:17
 		},
 		toonlink:{
-			health:100,
+			health:120,
 			attack:15,
 			counter:20
 		},
@@ -261,7 +261,7 @@ var charDataset = function() {
 			counter:17
 		},
 		wiifit:{
-			health:100,
+			health:130,
 			attack:10,
 			counter:10
 		},
@@ -271,13 +271,13 @@ var charDataset = function() {
 			counter:18
 		},
 		zelda:{
-			health:100,
-			attack:10,
+			health:170,
+			attack:13,
 			counter:15
 		},
 		zss:{
 			health:120,
-			attack:10,
+			attack:15,
 			counter:20
 		}
 	}
@@ -326,9 +326,6 @@ $(document).ready(function() {
 			$('<div class="game" style="display:inline-block;"><h1 id="pHealth">' + pChar.health + '</h1></div>').appendTo('.battle')
         }
     })
-	$('.smashicon').click(function() {
-		console.log(this)	
-	})
 	
 })
 var fight = function() {
@@ -336,7 +333,16 @@ var fight = function() {
 		alert('BOTH YOU AND THE ENEMY REGEN. THEY ALSO GET INCREASING POWER!')
 		played++
 	}
-	if (played >= 9 && !rBonus) {
+	if (played >= 20 && !rBonus) {
+		eChar.counter *= played / 2
+		eChar.health *= Math.round(played / 2);
+		pChar.health *= 1.75
+		pChar.attack *= .6
+		$('#pHealth').html(pChar.health)
+		$('#eHealth').html(eChar.health)
+		rBonus = true
+	}
+	else if (played >= 9 && !rBonus) {
 		eChar.counter *= Math.round(played / 3) - 1
 		eChar.health *= Math.round(played / 4) - 1;
 		pChar.health *= 1.75
