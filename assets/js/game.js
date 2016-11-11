@@ -61,9 +61,9 @@ var charDataset = function() {
 			counter:10
 		},
 		duckhunt:{
-			health:100,
-			attack:10,
-			counter:10
+			health:50,
+			attack:25,
+			counter:25
 		},
 		falco:{
 			health:120,
@@ -326,6 +326,9 @@ $(document).ready(function() {
 			$('<div class="game" style="display:inline-block;"><h1 id="pHealth">' + pChar.health + '</h1></div>').appendTo('.battle')
         }
     })
+	$('.smashicon').click(function() {
+		console.log(this)	
+	})
 	
 })
 var fight = function() {
@@ -334,9 +337,9 @@ var fight = function() {
 		played++
 	}
 	if (played >= 9 && !rBonus) {
-		eChar.counter *= (played / 3)
-		eChar.health *= 2;
-		pChar.health *= 2
+		eChar.counter *= Math.round(played / 3)
+		eChar.health *= Math.round(played/4);
+		pChar.health *= 1.5
 		pChar.attack *= .8
 		$('#pHealth').html(pChar.health)
 		$('#eHealth').html(eChar.health)
