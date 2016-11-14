@@ -36,6 +36,11 @@ body {
     margin:0 50px;
     display:inline-block;
 }
+#eHealth, #pHealth {
+    background-color: black;
+    color:white;
+    width:50px;
+}
 @media screen and (min-width: 1600px) {
 	.battle {
 		margin-top: 190px;

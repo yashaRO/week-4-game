@@ -287,8 +287,13 @@ var charSelect = enemySelect = rBonus = false;
 var played = 0
 var pChar, eChar, pBase, eBase;
 $(document).ready(function() {
+    $('.smashicon').mouseenter(function() {
+        $(this).css('background-color','orange')
+    })
+    $('.smashicon').mouseleave(function() {
+        $(this).css('background-color','lightblue')
+    })
     $('.game').hide()
-
     $('.smashicon').click(function() {
         if (charSelect && !enemySelect) {
             var img = $('<img />', { 
@@ -319,6 +324,7 @@ $(document).ready(function() {
                 src: this.src.replace('Icons','Portraits')
             });
             pChar = charData[this.src.slice(this.src.indexOf('Icons/') + 6, -4)]
+            console.log(this.src)
 			pBase = pChar.attack;
             img.appendTo('.pField');
             charSelect = true;
@@ -336,7 +342,7 @@ var fight = function() {
 	if (played >= 20 && !rBonus) {
 		eChar.counter *= played * 1.5
 		eChar.health *= Math.round(played / 2);
-		pChar.health *= 2.2
+		pChar.health = Math.floor(2.2 * pChar.health)
 		pChar.attack *= 1.2
 		$('#pHealth').html(pChar.health)
 		$('#eHealth').html(eChar.health)
@@ -345,7 +351,7 @@ var fight = function() {
 	else if (played >= 9 && !rBonus) {
 		eChar.counter *= Math.round(played / 3) - 1
 		eChar.health *= Math.round(played / 4) - 1;
-		pChar.health *= 1.75
+		pChar.health = Math.floor(pChar.health * 1.75)
 		pChar.attack *= .8
 		$('#pHealth').html(pChar.health)
 		$('#eHealth').html(eChar.health)
